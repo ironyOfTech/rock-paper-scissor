@@ -1,0 +1,54 @@
+body{
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display:flex;
+    flex-direction: column;
+    width:700px;
+    background-color: grey;
+    padding:50px;
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    
+}
+
+button{
+   
+    padding: 10px 50px 10px 50px;
+    border: none;
+    border-radius: 3px;
+    color:white;
+    font-size: 20px;
+    cursor: pointer;
+}
+#btn-1{
+    background-color: blue;
+}
+#btn-2{
+    background-color: red;
+}
+#btn-3{
+    background-color: greenyellow;
+}
+
+.result-box{
+    margin-top: auto;
+    background-color:black;
+    color:white;
+    text-align: center;
+    /* height:400px; */
+    
+}
+.img-1{
+    height: 350x;
+    width:404px;
+}

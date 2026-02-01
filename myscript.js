@@ -47,42 +47,80 @@ function playRound(humanchoice,compchoice)
 }
 
 // create a variable that controls the loop
-let count=1
+let count=0
 // create a function playGame
 
 function playGame()
 {
-    while(count<=5)
-    { 
-        
+   
         // Create a variable human_choice for user input and ask the user to input the value by storing it in that variable.
-        let human_choice=prompt("Enter Your Choice: ")
-        human_choice=human_choice.toLowerCase();
-        // create a variable to store the value returned by function HumanChoice.
-        let humanSelection=HumanChoice(human_choice);
+        const buttons = document.querySelectorAll("button");
+        
+         buttons.forEach(button => {
+          button.addEventListener("click", () => {
+            if (count===5) return;
+            const human_choice = button.textContent.toLowerCase();
+            // console.log(human_choice);
+             let humanSelection=HumanChoice(human_choice);
         // create a variable computer choice and store the random numbers from 0-3 in it.
-        let comp_choice=Math.floor(Math.random()*3);
+             let comp_choice=Math.floor(Math.random()*3);
         // create a variable to store the value returned by function ComputerChoice.
-        let computerSelection=ComputerChoice(comp_choice)
+             let computerSelection=ComputerChoice(comp_choice)
         // call the playRound function to display the final output of the game.
-        playRound(humanSelection,computerSelection);
-        count++;
+             playRound(humanSelection,computerSelection);
+             count++;
+
+             if(count===5)
+             {
+        
+                checkFinalWinner();
+                
+             }
+          });
+          });
+        // let human_choice= button.value;
+        
+        // create a variable to store the value returned by function HumanChoice.
+       
+       
     }
-    if(humanScore>computerScore)
-    { 
-        // user wins the game
-        alert("You won the Game!")
-    }
-    else if(humanScore==computerScore)
-    {
-        // user and winner both have equal score
-        alert("It's a tie!")
-    }
-    else{
-        //computer wins the game
-        alert("Computer wins the game!");
-    }
+    function checkFinalWinner(){
+
+        const resultDiv = document.createElement("div")
+        resultDiv.classList.add("result-box")
+        const para= document.createElement("p")
+        para.id="para-1"
+        const container = document.querySelector(".container")
+        const imageComp = document.createElement("img");
+        imageComp.classList.add("img-1");
+        const imageGirl= document.createElement("img");
+        imageGirl.classList.add("img-2");
+        container.appendChild(resultDiv)
+        resultDiv.appendChild(para)
+        
+         if(humanScore>computerScore)
+         { 
+             // user wins the game
+             container.style.height="600px"
+             para.textContent = `You won the game and your score is ${humanScore}`;
+             imageGirl.src="./images/girl.jpg"
+             resultDiv.appendChild(imageGirl)
+            
+         }
+         else if(humanScore==computerScore)
+         {
+             // user and winner both have equal score
+             para.textContent= `Its a tie.Your score is ${humanScore} and computer's score is ${computerScore}`;
+         }
+         else{
+             //computer wins the game
+            container.style.height="600px"
+            para.textContent = `Computer won the game with score ${computerScore}`;
+            imageComp.src="./images/computer.jpg"
+            resultDiv.appendChild(imageComp)
+
+         }
     
-}
+        }
 // Call the final functio playgame to declare the winner after completing all five rounds of the game.
 playGame();
